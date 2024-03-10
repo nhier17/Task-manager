@@ -2,6 +2,9 @@ require('dotenv').config()
 //express
 const express = require('express');
 const app = express();
+//security packages
+const cors = require('cors')
+const helmet = require('helmet')
 //db
 const connectDB = require('./db/connect')
 //routes
@@ -14,6 +17,8 @@ const errorHandler = require('./middleware/error')
 // middleware
 app.use(express.static('./Public'))
 app.use(express.json());
+app.use(cors());
+app.use(helmet());
 
 // routes
 app.use('/api/v1/tasks',tasks);
